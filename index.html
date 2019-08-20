@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Modern Web Development</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+</head>
+<!--using a container class offsets it to the right-->
+<body class="container" ng-app="mweb">
+<!--Everything below ng-app is angular js-->
+    <div>Hello - Modern Web Development</div>
+    <!--html forms are for sending info to the servers-->
+    <form ng-submit="submit(purchase)" ng-controller="PurchaseCtrl">
+    <!---->
+    <!--Controller binds the module and control together-->
+    <!--Action attribute tells the form where to send the data-->
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label>Buyer Name</label>
+                <!--form-control made a good looking input box-->
+                <input type="text" name="buyer_name" ng-model="purchase.name" class="form-control" placeholder="your name (must match ID)">
+                <!--If there is no name attribute in the fields, the form will never be submitted-->
+            </div>
+            <div class="form-group col-sm-6">
+                <label>Buyer Email</label>
+                <input type="text" name="buyer_email" ng-model="purchase.email" class="form-control" placeholder="your email (to send confirmation notifications)">
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group col-sm-6">
+        <label>Seating Section</label>
+        <select name="seating_section" ng-model="purchase.seating_section" class="form-control" placeholder="enter the number of seats (number only)">
+            <option>Premium</option>
+            <option>Plus</option>
+            <option>Standard</option>
+        </select>
+        </div>
+        <div class="form-group col-sm-6">
+            <label>Number of Seats</label>
+            <input type="text" name="num_seats" ng-model = "purchase.num_seats" class="form-control">
+        </div>
+        <div class="form-group">
+            <!--Fancy button classes come from Bootstrap!-->
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn">Reset</button>
+        </div>
+    </form>
+    <div>
+        <h2>Purchase Summary</h2>
+        <!--{{ means angular expressions-->
+        <p>{{purchase.num_seats || 0 }} seats in {{purchase.seating_section || 'unknown seating'}} section for {{purchase.name || 'unknown buyer'}} at email {{purchase.email || 'un@kno.wn '}}</p>    
+    </div>
+    <script src="/app.js"></script>
+    </body>
+</html>
